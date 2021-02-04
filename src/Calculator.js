@@ -27,15 +27,27 @@ function handleOnClear(e){
         <button 
             id="clear"
             onClick={handleOnClear}>Clear</button>
+        <button 
+            id="add"
+            onClick={handleOnClear}>+</button>
+        <button 
+            id="subtract"
+            onClick={handleOnClear}>-</button>
+        <button 
+            id="multiply"
+            onClick={handleOnClear}>x</button>
+        <button 
+            id="divide"
+            onClick={handleOnClear}>÷</button>
+        <button 
+            id="decimal"
+            onClick={handleOnClear}>.</button>
     <Grid 
-        style= {{gap: '1em'}}
+        style= {{gap: '0em'}}
         container
         direction="row"
         justify="center"
-        className="marginspace"
         >
-            <NumberButton
-                id="zero"/>
             <NumberButton
                 id="one"/>
             <NumberButton
@@ -54,6 +66,7 @@ function handleOnClear(e){
                 id="eight"/>
             <NumberButton
                 id="nine"/>
+            
         </Grid>
     </Container>
     );
