@@ -4,6 +4,7 @@ import {useState} from 'react'
 export default function NumberButton({id}){
     return(
         <button
+        className="numberButton"
         id={id}
         >
         {id}
