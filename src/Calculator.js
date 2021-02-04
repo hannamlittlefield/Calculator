@@ -1,5 +1,4 @@
 import React from 'react'
-import Container from '@material-ui/core/Container';
 import {useState} from 'react'
 import Grid from '@material-ui/core/Grid';
 import NumberButton from './NumberButton';
@@ -19,7 +18,7 @@ function handleOnClear(e){
     setEquals(defaultDisplay)
 }
     return(
-    <Container className="container">
+    <div className="container">
         <div className="display">{defaultDisplay}</div>
         <button 
             id="equals"
@@ -54,12 +53,26 @@ function handleOnClear(e){
                 id="two"/>
             <NumberButton
                 id="three"/>
+    </Grid>
+    <Grid 
+        style= {{gap: '0em'}}
+        container
+        direction="row"
+        justify="center"
+        >
             <NumberButton
                 id="four"/>
             <NumberButton
                 id="five"/>
             <NumberButton
                 id="six"/>
+    </Grid>
+    <Grid 
+        style= {{gap: '0em'}}
+        container
+        direction="row"
+        justify="center"
+        >
             <NumberButton
                 id="seven"/>
             <NumberButton
@@ -68,7 +81,7 @@ function handleOnClear(e){
                 id="nine"/>
             
         </Grid>
-    </Container>
+    </div>
     );
 }
 
