@@ -4,55 +4,40 @@ import Grid from '@material-ui/core/Grid';
 import NumberButton from './NumberButton';
 
 export default function Calculator() {
-const defaultDisplay = '0'
-const [equals, setEquals] = useState(defaultDisplay);
-    
+const [display, setDisplay] = useState('0');
+
 function handleOnEquals(e){
-    alert('equals')
-    /*onclick that breaks up string and figure out what symbols are being used, then order of operations */
+    setDisplay(eval(display))
 }
 
-/* regex?? */
+
+function displayNum(event){
+    /* regex looks for double zeroes at the beginning or multiple decimals */
+    let regTest = display + event.target.value
+    if(!/[.+\-*\/]0{2}|[.+\-*\/]{2}/.test(regTest)){
+        if (display === '0'){
+            setDisplay(event.target.value)
+        }
+        else {
+            setDisplay(display + event.target.value)
+        }
+    }
+}
 
 function handleOnClear(e){
-    setEquals(defaultDisplay)
+    setDisplay('0')
 }
     return(
     <div className="container">
-        <div className="display">{defaultDisplay}</div>
-        <button 
-            id="equals"
-            onClick={handleOnEquals}>=</button>
-        <button 
-            id="clear"
-            onClick={handleOnClear}>Clear</button>
-        <button 
-            id="add"
-            onClick={handleOnClear}>+</button>
-        <button 
-            id="subtract"
-            onClick={handleOnClear}>-</button>
-        <button 
-            id="multiply"
-            onClick={handleOnClear}>x</button>
-        <button 
-            id="divide"
-            onClick={handleOnClear}>÷</button>
-        <button 
-            id="decimal"
-            onClick={handleOnClear}>.</button>
+        <div className="display">{display}</div>
+        {[{id: 'add', numVal: '+'},{id: 'subtract', numVal: '-'},{id: 'multiply', numVal: '*'}, {id:'divide', numVal: '/'},].map(item => { return <NumberButton id={item.id} numVal={item.numVal} handleClick={displayNum}/>})}
     <Grid 
         style= {{gap: '0em'}}
         container
         direction="row"
         justify="center"
         >
-            <NumberButton
-                id="one"/>
-            <NumberButton
-                id="two"/>
-            <NumberButton
-                id="three"/>
+        {[{id: 'decimal', numVal: '.'},{id: 'zero', numVal: '0'},{id: 'one', numVal: '1'},{id: 'two', numVal: '2'}].map(item => { return <NumberButton id={item.id} numVal={item.numVal} handleClick={displayNum}/>})}
     </Grid>
     <Grid 
         style= {{gap: '0em'}}
@@ -60,12 +45,7 @@ function handleOnClear(e){
         direction="row"
         justify="center"
         >
-            <NumberButton
-                id="four"/>
-            <NumberButton
-                id="five"/>
-            <NumberButton
-                id="six"/>
+        {[{id: 'three', numVal: '3'},{id: 'four', numVal: '4'},{id: 'five', numVal: '5'}, {id: 'six', numVal: '6'}].map(item => { return <NumberButton id={item.id} numVal={item.numVal} handleClick={displayNum}/>})}
     </Grid>
     <Grid 
         style= {{gap: '0em'}}
@@ -73,15 +53,14 @@ function handleOnClear(e){
         direction="row"
         justify="center"
         >
-            <NumberButton
-                id="seven"/>
-            <NumberButton
-                id="eight"/>
-            <NumberButton
-                id="nine"/>
-            
+        {[{id: 'seven', numVal: '7'},{id: 'eight', numVal: '8'},{id: 'nine', numVal: '9'}].map(item => { return <NumberButton id={item.id} numVal={item.numVal} handleClick={displayNum}/>})}
         </Grid>
+    <button 
+        id="clear"
+        onClick={handleOnClear}>Clear</button>
+    <button
+        id="equals"
+        onClick={handleOnEquals}>=</button>
     </div>
     );
 }
-
